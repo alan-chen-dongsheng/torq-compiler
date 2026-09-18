@@ -11,7 +11,7 @@ BASE_DIR=$(dirname "$(realpath "${BASH_SOURCE[0]}")")/..
 
 BUILD_DIR=$(readlink -f $1)
 
-cd $BASE_DIR
+cd "$BASE_DIR"
 
 # check if SCCACHE is installed
 if command -v sccache &> /dev/null
@@ -28,18 +28,18 @@ else
 fi
 
 # sudo apt install python3-numpy python3-pybind11 install nanobind-dev
-# 
+#
 #  -G Ninja
-# 
+#
 #     Enables a build using Ninja that is faster than the default based on make
 #
-# -DCMAKE_BUILD_TYPE=RelWithDebInfo 
+# -DCMAKE_BUILD_TYPE=RelWithDebInfo
 #
 #     Set up a release build with debug information. This is done to be able to analyze stack
 #     traces while ensuring the performance of the program is not too slow.
 #
 #  -DCMAKE_C_COMPILER=clang and -DCMAKE_CXX_COMPILER=clang++
-# 
+#
 #     Enables build with our preferred toolchain
 #
 #  -DIREE_BUILD_PYTHON_BINDINGS=ON
@@ -51,15 +51,15 @@ fi
 #     Use the currently active python interpreted (uses the interpreter of a virtualenv if that is enabled)
 #
 # -DIREE_ENABLE_SPLIT_DWARF=ON and -DIREE_ENABLE_THIN_ARCHIVES=ON
-#     
+#
 #     Speed up build by reducing unnecessary I/O
-# 
+#
 #  -DIREE_ENABLE_LLD=ON
 #
 #     Use lld, required when building with clang (see later)
 #
 #  -DCMAKE_C_COMPILER=clang and -DCMAKE_CXX_COMPILER=clang++
-# 
+#
 #     Enables build with our preferred toolchain
 #
 #  -DIREE_HAL_DRIVER_LOCAL_SYNC=ON and -DIREE_HAL_DRIVER_LOCAL_TASK=ON
